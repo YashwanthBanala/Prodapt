@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        header {
+            color: #1877f2;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+        .signup-container {
+            background: #fff;
+            width: 360px;
+            margin: 0 auto;
+            padding: 30px 30px 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .name-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        .name-row input[type="text"] {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            padding: 10px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f5f6fa;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #1877f2;
+            background: #fff;
+        }
+        label {
+            font-size: 0.95rem;
+            color: #606770;
+            margin-bottom: 2px;
+            text-align: left;
+        }
+        input[type="radio"] {
+            margin-right: 4px;
+        }
+        .gender-group {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        input[type="submit"] {
+            background: #42b72a;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        input[type="submit"]:hover {
+            background: #36a420;
+        }
+    </style>
+</head>
+<body>
+    <header>Facebook</header>
+    <div class="signup-container">
+        <form>
+            <div class="name-row">
+                <input type="text" name="fname" placeholder="First name" required>
+                <input type="text" name="lname" placeholder="Surname" required>
+            </div>
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" required>
+            <label>Gender</label>
+            <div class="gender-group">
+                <label><input type="radio" name="gen">Male</label>
+                <label><input type="radio" name="gen">Female</label>
+            </div>
+            <input type="email" name="email" placeholder="Email address" required>
+            <input type="password" name="pass" placeholder="New password" required>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</body>
+</html>
