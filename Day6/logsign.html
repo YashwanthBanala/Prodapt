@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup Side by Side</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .fb-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 60px;
+            gap: 60px;
+        }
+        .fb-left {
+            max-width: 420px;
+            margin-top: 60px;
+        }
+        .fb-logo {
+            color: #1877f2;
+            font-size: 60px;
+            font-weight: bold;
+            letter-spacing: -3px;
+            margin-bottom: 10px;
+        }
+        .fb-tagline {
+            font-size: 24px;
+            color: #1c1e21;
+            margin-bottom: 20px;
+        }
+        .fb-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            padding: 28px 24px 18px 24px;
+            min-width: 340px;
+            margin-bottom: 18px;
+        }
+        .fb-card h2 {
+            color: #1c1e21;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            width: 110px;
+            color: #606770;
+            font-size: 15px;
+        }
+        .form-control {
+            font-size: 15px;
+        }
+        .btn-primary, .btn-success {
+            width: 100%;
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .btn-default {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 900px) {
+            .fb-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            .fb-left {
+                margin-top: 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fb-container" style="flex-direction: column; align-items: center; gap: 0; padding-top: 40px;">
+        <div class="fb-logo" style="text-align: center; margin-bottom: 0;">facebook</div>
+        <div class="fb-tagline" style="text-align: center; margin-bottom: 32px;">Facebook helps you connect and share<br>with the people in your life.</div>
+        <div class="fb-card" style="padding: 28px 24px; width: auto;">
+            <div style="display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+                <!-- Login Form -->
+                <div style="min-width: 300px; max-width: 340px; flex: 1;">
+                    <h2 style="text-align:center;">Login</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log In</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
+                </div>
+                <!-- Signup Form -->
+                <div style="min-width: 300px; max-width: 340px; flex: 1;">
+                    <h2 style="text-align:center;">Sign Up</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="signupName">Name</label>
+                            <input type="text" class="form-control" id="signupName" placeholder="Full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" class="form-control" id="signupPassword" placeholder="New password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupConfirm">Confirm</label>
+                            <input type="password" class="form-control" id="signupConfirm" placeholder="Confirm password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupMobile">Mobile</label>
+                            <input type="text" class="form-control" id="signupMobile" placeholder="Mobile number" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Sign Up</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
