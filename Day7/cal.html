@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function addNumbers(){
+            var a=document.getElementsByName("num1")[0].value;
+            var b=document.getElementsByName("num2")[0].value;
+            var sum = parseFloat(a)+parseFloat(b);
+            document.getElementById("result").value= sum;
+        }
+        function subtractNumbers(){
+            var a=document.getElementsByName("num1")[0].value;
+            var b=document.getElementsByName("num2")[0].value;
+            var difference = a-b;
+            document.getElementById("result").value= difference;
+        }
+        function multiplyNumbers(){
+            var a=document.getElementsByName("num1")[0].value;
+            var b=document.getElementsByName("num2")[0].value;
+            var product = a*b;
+            document.getElementById("result").value= product;
+        }
+        function divideNumbers(){
+            var a=document.getElementsByName("num1")[0].value;
+            var b=document.getElementsByName("num2")[0].value;
+            if(b == 0){
+                document.getElementById("result").value = "Cannot divide by zero";
+            } else {
+                var quotient = a/b;
+                document.getElementById("result").value= quotient;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <form>
+            <input type="number" name="num1" placeholder="Enter first number" required><br>
+            <input type="number" name="num2" placeholder="Enter second number" required><br>
+            <input type="button" value="Add" onclick="addNumbers()">
+            <input type="button" value="Subtract" onclick="subtractNumbers()">
+            <input type="button" value="Multiply" onclick="multiplyNumbers()">
+            <input type="button" value="Divide" onclick="divideNumbers()">
+            <input type="text" id="result" placeholder="Result" readonly>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getFullName() {
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            document.getElementById("fullName").value = firstName + " " + lastName;
+        }
+        function abc(){
+            document.getElementById('firstName').style.backgroundColor = "lightblue";
+            document.getElementById('firstName').style.color = "red";
+        }
+    </script>
+</head>
+<body>
+    <marquee onmouseover="this.stop()" onmouseout="this.start()">
+        Welcome to the DOM Manipulation Demo!</marquee>
+    <div style="text-align: center;">
+        First Name: <input type="text" id="firstName" placeholder="Enter your first name" onblur="abc()"><br>
+        Last Name: <input type="text" id="lastName" placeholder="Enter your last name"><br>
+        <input type="text" id="fullName" placeholder="Full Name" onfocus="getFullName()"><br>
+        <input type="button" onclick="getFullName()" value="getFullName">
+    </div>
+</body>
+</html>

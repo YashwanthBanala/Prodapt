@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Snake Game</title>
+  <style>
+    html, body { height:100%; margin:0; font-family: sans-serif; }
+    body { display: flex; justify-content: center; align-items: center; background: #111; color: white; }
+    #game-container { display: flex; }
+    canvas { border: 1px solid white; }
+    #controls { margin-left: 20px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    button, select { margin: 5px; padding: 5px; background: #444; border: none; color: white; cursor: pointer; }
+    button:hover, select:hover { background: #666; }
+    #score { font-size: 18px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="game" width="400" height="400"></canvas>
+    <div id="controls">
+      <h3>Game Controls</h3>
+      <button id="start-btn">Start Game</button>
+      <button id="pause-btn" disabled>Pause</button>
+      <button id="resume-btn" disabled>Resume</button>
+      <button id="reset-btn" disabled>Reset</button>
+      <h4>Difficulty</h4>
+      <select id="difficulty">
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Hard</option>
+      </select>
+      <div id="score">Score: 0</div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const grid = 16;
+    let count = 0;
+    let snake, apple, dx, dy, score, gameInterval;
+    let gamePaused = false;
+    let currentSpeed = 100;
+
+    const startBtn = document.getElementById('start-btn');
+    const pauseBtn = document.getElementById('pause-btn');
+    const resumeBtn = document.getElementById('resume-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const scoreDisplay = document.getElementById('score');
+    const difficultySelect = document.getElementById('difficulty');
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function initializeGame() {
+      snake = [{ x: 160, y: 160 }];
+      dx = grid;
+      dy = 0;
+      score = 0;
+      currentSpeed = 100;
+      gamePaused = false;
+      updateScore();
+      clearInterval(gameInterval);
+      gameInterval = setInterval(gameLoop, currentSpeed);
+    }
+
+    function updateScore() {
+      scoreDisplay.textContent = `Score: ${score}`;
+    }
+
+    function gameLoop() {
+      if (++count < 4) return;
+      count = 0;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      snake[0].x += dx;
+      snake[0].y += dy;
+
+      if (snake[0].x < 0) snake[0].x = canvas.width - grid;
+      else if (snake[0].x >= canvas.width) snake[0].x = 0;
+      if (snake[0].y < 0) snake[0].y = canvas.height - grid;
+      else if (snake[0].y >= canvas.height) snake[0].y = 0;
+
+      snake.unshift({ x: snake[0].x, y: snake[0].y });
+
+      if (snake[0].x === apple.x && snake[0].y === apple.y) {
+        score++;
+        currentSpeed = Math.max(50, currentSpeed - 2);
+        clearInterval(gameInterval);
+        gameInterval = setInterval(gameLoop, currentSpeed);
+        apple = { x: getRandomInt(0, canvas.width / grid) * grid, y: getRandomInt(0, canvas.height / grid) * grid };
+        updateScore();
+      } else {
+        snake.pop();
+      }
+
+      ctx.fillStyle = 'green';
+      snake.forEach((segment, index) => {
+        ctx.fillRect(segment.x, segment.y, grid - 1, grid - 1);
+        if (index !== 0 && segment.x === snake[0].x && segment.y === snake[0].y) {
+          initializeGame();
+        }
+      });
+
+      ctx.fillStyle = 'red';
+      ctx.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+    }
+
+    function changeDirection(event) {
+      if (gamePaused) return;
+      if (event.key === 'ArrowUp' && dy === 0) { dx = 0; dy = -grid; }
+      else if (event.key === 'ArrowDown' && dy === 0) { dx = 0; dy = grid; }
+      else if (event.key === 'ArrowLeft' && dx === 0) { dx = -grid; dy = 0; }
+      else if (event.key === 'ArrowRight' && dx === 0) { dx = grid; dy = 0; }
+    }
+
+    function handleDifficultyChange() {
+      const difficulty = parseInt(difficultySelect.value);
+      if (difficulty === 1) currentSpeed = 100;
+      else if (difficulty === 2) currentSpeed = 70;
+      else if (difficulty === 3) currentSpeed = 50;
+      clearInterval(gameInterval);
+      gameInterval = setInterval(gameLoop, currentSpeed);
+    }
+
+    startBtn.addEventListener('click', () => {
+      initializeGame();
+      startBtn.disabled = true;
+      pauseBtn.disabled = false;
+      resumeBtn.disabled = true;
+      resetBtn.disabled = false;
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      gamePaused = true;
+      clearInterval(gameInterval);
+      pauseBtn.disabled = true;
+      resumeBtn.disabled = false;
+    });
+
+    resumeBtn.addEventListener('click', () => {
+      gamePaused = false;
+      gameInterval = setInterval(gameLoop, currentSpeed);
+      pauseBtn.disabled = false;
+      resumeBtn.disabled = true;
+    });
+
+    resetBtn.addEventListener('click', () => {
+      initializeGame();
+      pauseBtn.disabled = false;
+      resumeBtn.disabled = true;
+      resetBtn.disabled = false;
+    });
+
+    difficultySelect.addEventListener('change', handleDifficultyChange);
+
+    window
+::contentReference[oaicite:1]{index=1}
+ 
+        .addEventListener('keydown', changeDirection);
+    
+        // Initialize the game
+        apple = { x: getRandomInt(0, canvas.width / grid) * grid, y: getRandomInt(0, canvas.height / grid) * grid };
+        initializeGame();
+    </script>
+</body>
+</html>

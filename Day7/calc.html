@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function cal(value) {
+            var a = document.getElementsByName("num1")[0].value;
+            var b = document.getElementsByName("num2")[0].value;
+            var result;
+
+            switch (value) {
+                case "+":
+                    result = parseFloat(a) + parseFloat(b);
+                    break;
+                case "-":
+                    result = a - b;
+                    break;
+                case "*":
+                    result = a * b;
+                    break;
+                case "/":
+                    if (b == 0) {
+                        result = "Cannot divide by zero";
+                    } else {
+                        result = a / b;
+                    }
+                    break;
+            }
+            document.getElementById("result").value = result;
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <form>
+            <input type="number" name="num1" placeholder="Enter first number" required><br>
+            <input type="number" name="num2" placeholder="Enter second number" required><br>
+            <input type="button" value="+" onclick="cal(value)">
+            <input type="button" value="-" onclick="cal(value)">
+            <input type="button" value="*" onclick="cal(value)">
+            <input type="button" value="/" onclick="cal(value)">
+            <input type="text" id="result" placeholder="Result" readonly>
+        </form>
+    </div>
+</body>
+</html>

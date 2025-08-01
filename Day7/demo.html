@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .abc {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 100px auto;
+        }
+    </style>
+    <script>
+        function myfun() {
+            alert("HI");
+            var myname = document.getElementsByName("username")[0].value;
+            var mypass = document.getElementsByName("password")[0].value;
+            if (myname === "Yashwanth" && mypass === "yash1234") {
+                alert("Login successful!, Welcome " + myname + "!");
+            } else {
+                alert("Login failed! Please try again.");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="abc"> 
+        <form class="form-inline">
+            <input type="text" name="username" placeholder="Enter your username" required class="form-control"><br>
+            <input type="password" name="password" placeholder="Enter your password" required class="form-control"><br>
+            <input type="button" value="Submit" onclick="myfun()">
+            <input type="button" value="Double click" ondblclick="myfun()">
+        </form>
+    </div>
+</body>
+
+</html>
