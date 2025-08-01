@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function car(){
+            const speed=200;
+            for(var i=0;i<5;i++){                      // Var GLobal Scope,Let Block Scope
+                console.log("I : "+i);                 // Var can be accessed outside the loop
+            }                                          // Let cannot be accessed outside the loop
+            console.log("I :"+i);                      // I will be 5 because var is global scope
+            // speed=300;                              //Const cannot be reassigned
+            // console.log("Speed : "+speed);          // == checks only the value, not the type
+            for(let j=0;j<5;j++){                      // === checks both value and type 
+                console.log("J : "+j);
+            }
+            console.log("J :"+j);
+        }
+        car()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

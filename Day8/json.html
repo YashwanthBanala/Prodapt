@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Local Storage Demo</title>
+  <script>
+    function storeName() {
+      const name = document.getElementById('uname').value;
+      const id = document.getElementById('uid').value;
+      const age = document.getElementById('uage').value;
+      const salary = document.getElementById('usal').value;
+      const designation = document.getElementById('udesig').value;
+ 
+      const obj = {
+        id: id,
+        name: name,
+        age: age,
+        salary: salary,
+        designation: designation
+      };
+ 
+      localStorage.setItem('emps', JSON.stringify(obj));
+      alert("Data stored successfully!");
+    }
+ 
+    function displayName() {
+      const storedData = localStorage.getItem('emps');
+      if (storedData) {
+        const obj = JSON.parse(storedData);
+        alert(
+          `ID: ${obj.id}\n` +
+          `Name: ${obj.name}\n` +
+          `Age: ${obj.age}\n` +
+          `Salary: ${obj.salary}\n` +
+          `Designation: ${obj.designation}`
+        );
+      } else {
+        alert("No data found.");
+      }
+    }
+ 
+    function deleteName() {
+      if (localStorage.getItem('emps')) {
+        localStorage.removeItem('emps');
+        alert("Data deleted successfully.");
+      } else {
+        alert("No data to delete.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div style="text-align: center;">
+    <h1>Storage Demo</h1>
+    ID: <input type="text" id="uid" /><br /><br />
+    NAME: <input type="text" id="uname" /><br /><br />
+    AGE: <input type="text" id="uage" /><br /><br />
+    SALARY: <input type="text" id="usal" /><br /><br />
+    DESIG: <input type="text" id="udesig" /><br /><br />
+ 
+    <input type="submit" value="Store" onclick="storeName()" />
+    <input type="submit" value="Display" onclick="displayName()" />
+    <input type="submit" value="Delete" onclick="deleteName()" />
+  </div>
+</body>
+</html>

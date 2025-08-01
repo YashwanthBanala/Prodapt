@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function storedata() {
+            var name = document.getElementById("uname").value;
+            localStorage.setItem("username", name);
+            console.log("Data stored successfully! Name: " + name);
+        }
+
+        function display() {
+            var name = localStorage.getItem("username");
+            if (name) {
+                console.log("Stored Name: " + name);
+            } else {
+                console.log("No data found!");
+            }
+        }
+
+        function deletedata() {
+            localStorage.removeItem("username");
+            console.log("Data deleted successfully!");
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <form>
+            <input type="text" id="uname" placeholder="Enter your name" >
+            <input type="button" value="store" onclick="storedata()">
+            <input type="button" value="retrieve" onclick="display()">
+            <input type="button" value="delete" onclick="deletedata()">
+        </form>
+    </div>
+</body>
+</html>
