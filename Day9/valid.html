@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .abc {
+            background-color: rgb(242, 237, 229);
+            padding: 20px;
+            border: 2px solid black;
+            margin: 100px auto;
+            text-align: center;
+            width: 40%;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+    </style>
+
+    <script>
+        function showFieldError(inputId, message) {
+            var input = document.getElementById(inputId);
+            var errorP = document.getElementById(inputId + '-error');
+            if (input.value.trim() === "") {
+                errorP.innerHTML = message;
+                // Do not focus, just show the message
+                return false;
+            } else {
+                errorP.innerHTML = "";
+            }
+            return true;
+        }
+
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var mobile = document.getElementById("mobile").value.trim();
+
+            if (!name || !email || !password || !confirmPassword || !mobile) {
+                document.getElementById('name-error').innerHTML = !name ? 'Please enter your name.' : '';
+                document.getElementById('email-error').innerHTML = !email ? 'Please enter your email.' : '';
+                document.getElementById('password-error').innerHTML = !password ? 'Please enter your password.' : '';
+                document.getElementById('confirmPassword-error').innerHTML = !confirmPassword ? 'Please confirm your password.' : '';
+                document.getElementById('mobile-error').innerHTML = !mobile ? 'Please enter your mobile number.' : '';
+                return false;
+            }
+
+            // Email pattern validation
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('email-error').innerHTML = 'Please enter a valid email address.';
+                return false;
+            } else {
+                document.getElementById('email-error').innerHTML = '';
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPassword-error').innerHTML = 'Passwords do not match.';
+                return false;
+            } else {
+                document.getElementById('confirmPassword-error').innerHTML = '';
+            }
+
+            var mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobile)) {
+                document.getElementById('mobile-error').innerHTML = 'Mobile number must be 10 digits.';
+                return false;
+            } else {
+                document.getElementById('mobile-error').innerHTML = '';
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+        function checkPasswordMatch() {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var errorP = document.getElementById('confirmPassword-error');
+            if (confirmPassword !== "" && password !== confirmPassword) {
+                errorP.innerHTML = 'Both the fields must be same.';
+            } else {
+                errorP.innerHTML = '';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="abc">
+        <form onsubmit="return validateForm(event)">
+
+
+            <div class="form-group">
+                <label for="name" class="control-label">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" required onblur="showFieldError('name', 'Please enter your name.')">
+                <p id="name-error" style="color:red;text-align:left;"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" required onblur="showFieldError('email', 'Please enter your email.')">
+                <p id="email-error" style="color:red;text-align:left;"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" required onblur="showFieldError('password', 'Please enter your password.')">
+                <p id="password-error" style="color:red;text-align:left;"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" required onblur="showFieldError('confirmPassword', 'Please confirm your password.')" oninput="checkPasswordMatch()">
+        
+                <p id="confirmPassword-error" style="color:red;text-align:left;"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" class="form-control" id="mobile" placeholder="Enter mobile number" required onblur="showFieldError('mobile', 'Please enter your mobile number.')">
+                <p id="mobile-error" style="color:red;text-align:left;"></p>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-default">Reset</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
